@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ToSa">
+    <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="base.css">
+    <title>Task Detail</title>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="bar-chart" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"></path>
+    </symbol>
+    <symbol id="home" viewBox="0 0 16 16">
+        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+    </symbol>
+    <symbol id="speedometer2" viewBox="0 0 16 16">
+        <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+        <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+    </symbol>
+    <symbol id="table" viewBox="0 0 16 16">
+        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+    </symbol>
+    <symbol id="people-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+    </symbol>
+    <symbol id="grid" viewBox="0 0 16 16">
+        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+    </symbol>
+</svg>
+
+<main class="d-flex flex-nowrap" style="height: 100vh; overflow-y: hidden;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh; overflow-y: hidden;">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bar-chart"/></svg>
+        <span class="fs-4">Dashboard</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+            Home</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+            Dashboard</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+            Tickets</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+            Sort by Type</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+            Sort by User</a>
+        </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" 
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/brand/user3.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Username</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Tasks</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+        </div>
+    </div>
+    <div class="b-example-divider b-example-vr"></div>
+
+    <div class="container mt-xxl-5 w-75" style="height: 90vh; overflow-y:auto;">
+        <div class="row g-3">
+            <div class="text-center pt-3">
+                <img class="d-block mx-auto mb-3" src="/assets/brand/logo.png" alt="" width="75" height="75">
+                <div class="fs-2 mb-2">Details Form</div>
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam delectus veniam ex ipsum. 
+                    Odit dolores a velit aliquam reprehenderit excepturi est molestias quibusdam tenetur quod, 
+                    hic nam aut numquam alias!
+                </p>
+            </div>
+            <hr class="my-4">
+
+            <h4 class="mb-3">Task Status & Details</h4>
+            <form class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <label for="taskid" class="form-label">ID (Database ID)*</label>
+                        <input type="text" class="form-control" id="taskid" value="1" required disabled>
+                        <div class="invalid-feedback">
+                            Valid ID is required.
+                        </div>
+                    </div>
+      
+                  <div class="col-sm-4">
+                    <label for="tasktype" class="form-label">Task Type*</label>
+                    <input type="text" class="form-control" id="tasktype" value="VSWR" required disabled>
+                    <div class="invalid-feedback">
+                      Valid type is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="tasktype" class="form-label">Severity*</label>
+                    <input type="text" class="form-control bg-danger text-light" id="tasktype" value="Critical" disabled>
+                    <div class="invalid-feedback">
+                      Valid severity is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="taskdate" class="form-label">Created Date&Time*</label>
+                    <input type="text" class="form-control" id="taskdate" value="2023.08.20." required disabled>
+                    <div class="invalid-feedback">
+                      Valid date/time is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="tasksite" class="form-label">Site*</label>
+                    <input type="text" class="form-control" id="tasksite" value="NEWYORK1" required disabled>
+                    <div class="invalid-feedback">
+                      Valid site is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="tasksite" class="form-label">Location*</label>
+                    <input type="text" class="form-control" id="tasksite" value="New York 1" required disabled>
+                    <div class="invalid-feedback">
+                      Valid location is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="taskupdatedtime" class="form-label">Updated Date&Time*</label>
+                    <input type="text" class="form-control" id="taskupdatedtime" value="2023.09.05." required disabled>
+                    <div class="invalid-feedback">
+                      Valid date/time is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="taskrepeated" class="form-label">Repeated Time(s)*</label>
+                    <input type="text" class="form-control" id="taskrepeated" value="11" required disabled>
+                    <div class="invalid-feedback">
+                      Valid number is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="taskauthor" class="form-label">Author(s)*</label>
+                    <input type="text" class="form-control" id="taskauthor" value="System Admin" required disabled>
+                    <div class="invalid-feedback">
+                      Valid name is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="takdelegatedto" class="form-label">Delegated To*</label>
+                    <input type="text" class="form-control" id="takdelegatedto" value="Bruce Lee" required disabled>
+                    <div class="invalid-feedback">
+                      Valid name is required.
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4 form-check form-switch d-flex align-items-end ps-2">
+                    <label class="form-check-label me-5" for="taskstatus">Completed?</label>
+                    <input type="checkbox" class="form-check-input" role="switch" id="taskstatus" checked>
+                </div>
+                
+      
+                  <div class="col-12">
+                    <label for="taskdescription" class="form-label">Description*</label>
+                    <div class="input-group has-validation">
+                      <textarea class="form-control" rows="5" id="taskdescription" placeholder="Task description..."></textarea>
+                    <div class="invalid-feedback">
+                        Valid description is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="taskcomment" class="form-label">Comment*</label>
+                    <div class="input-group has-validation">
+                      <textarea class="form-control" rows="3" id="taskcomment" placeholder="Task comment..."></textarea>
+                    <div class="invalid-feedback">
+                        Valid comment is required.
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="d-grid gap-2 d-md-block">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn btn-primary" type="submit">Modify</button>
+                    <button class="btn btn-success" type="submit">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>      
+    </div> 
+</main>
+
+<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="sidebars.js"></script></body>
+
+</body>
+</html>
